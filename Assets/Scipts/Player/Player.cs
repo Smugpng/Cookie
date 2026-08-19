@@ -33,21 +33,10 @@ public class Player : MonoBehaviour
 
         }
     }
-    void OnUp(InputValue value)
+   
+    void OnMove(InputValue value)
     {
-        controler.Up();
-    }
-    void OnDown(InputValue value)
-    {
-        controler.Down();
-    }
-    void OnLeft(InputValue value)
-    {
-        controler.Left();
-    }
-    void OnRight(InputValue value)
-    {
-        controler.Right();
+        controler.Transport(value.Get<Vector2>());
     }
 
 
