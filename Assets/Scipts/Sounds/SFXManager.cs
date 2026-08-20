@@ -1,9 +1,9 @@
 using UnityEngine;
-
+[RequireComponent (typeof(AudioSource))]
 public class SFXManager : MonoBehaviour
 {
     [SerializeField] private AudioSource audioPlayer;
-    public AudioClip gulp;
+    public AudioClip moveSound,error;
     public static SFXManager Instance { get; private set; }
     private void Awake()
     {
@@ -21,6 +21,10 @@ public class SFXManager : MonoBehaviour
 
     public void PlaySound()
     {
-        audioPlayer.PlayOneShot(gulp);
+        audioPlayer.PlayOneShot(moveSound);
+    }
+    public void ErrorSound()
+    {
+        audioPlayer.PlayOneShot(error);
     }
 }
