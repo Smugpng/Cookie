@@ -9,6 +9,7 @@ public class PlayerControler
 
     [Header("Tweening")]
     private float leanTime = .15f;
+    private bool canSkip;
 
     [Header("Movement")]
     private Vector2 newPos;
@@ -29,10 +30,15 @@ public class PlayerControler
         if (moveinput == new Vector2(0, 0)) return; //Checks if player input is a move press or release input.
 
         SFXManager.Instance.PlaySound();
-        if (LeanTween.isTweening(playerObj)) //If player is already moving and in the animation skip ahead to the end of the animation and stop the tween
+        if (canSkip && LeanTween.isTweening(playerObj)) //If player is already moving and in the animation skip ahead to the end of the animation and stop the tween
         {
             LeanTween.cancel(playerObj);
-            playerObj.transform.position = newPos;
+
+            int newX = Mathf.RoundToInt(newPos.x);
+            int newY = Mathf.RoundToInt(newPos.y);
+            Vector2 roundedPos = new Vector2(newX, newY);
+
+            playerObj.transform.position = roundedPos;
             playerObj.transform.localScale = playerStartScale;
         }
 
@@ -40,12 +46,13 @@ public class PlayerControler
 
         if (!CanMove(newPos))
         {
+            canSkip = false;
             SFXManager.Instance.ErrorSound();
             InPlace(newPos);
             return;
         }
-
-
+        canSkip = true;
+        
 
         LeanTween.move(playerObj, newPos, leanTime).setEaseOutBack().setEaseOutCirc(); //movement tween
         LeanTween.scale(playerObj, new Vector3(.75f, .75f, .75f), leanTime).setEaseInOutBounce().setLoopPingPong(1); //cosmetic scale tween
@@ -57,11 +64,13 @@ public class PlayerControler
         { return false; }
         else return true;
     }
+ 
     private void InPlace(Vector3 desiredLocation) //Can be bypassed if inputed fast fix next time
     {
         Vector3 pos = ((playerObj.transform.position / 2) + (desiredLocation / 2));
         LeanTween.move(playerObj, pos, .05f).setEaseOutBack().setLoopPingPong(1); //movement tween
         LeanTween.scale(playerObj, new Vector3(1.25f, 1.25f, 1.25f), .1f).setEaseInOutBounce().setLoopPingPong(1);
     }
+
 
 }

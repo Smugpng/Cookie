@@ -3,15 +3,12 @@ using UnityEngine;
 
 public class Cookie : MonoBehaviour
 {
+    private Collectable cookie;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        Collectable cookie = new Collectable();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
+        cookie = new Collectable(24);
         
     }
+
 }

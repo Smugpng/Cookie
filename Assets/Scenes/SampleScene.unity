@@ -318,9 +318,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e4e886b2169ae94eb16ad1cc3dd1261, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WallSpawn
-  numOfWalls: 8
+  numOfWalls: 9
+  numOfPickups: 9
   randomizeAmount: 5
   wallPrefab: {fileID: 3490346458288879745, guid: 3bc80e856175a1b4b9a7f3e43fb7b168, type: 3}
+  enemyPrefab: {fileID: 2155740395503899734, guid: c5320bf433299924fb2dc36b53dd4d87, type: 3}
   wallPlacements: []
   walls: []
 --- !u!1 &1874561482

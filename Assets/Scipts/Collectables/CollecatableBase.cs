@@ -8,8 +8,10 @@ public class Collectable
 
     public Collectable()
     {
-
+        
     }
+    
+   
     public Collectable(int init_points)
     {
         points = init_points;
@@ -18,4 +20,6 @@ public class Collectable
     {
         Debug.Log("Pick Up");
     }
+    
+
 }

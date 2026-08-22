@@ -5,6 +5,7 @@ public class Player : MonoBehaviour
 
     public static Player Instance {  get; private set; }
     private PlayerControler controler;
+    private int playerPoints;
 
     public int points = 0;
     private void Awake()
@@ -37,6 +38,12 @@ public class Player : MonoBehaviour
     void OnMove(InputValue value)
     {
         controler.Transport(value.Get<Vector2>());
+    }
+    public void AddPoints(int pointsGained,GameObject collected)
+    {
+        Destroy(collected);
+        playerPoints += pointsGained;
+        Debug.Log(playerPoints);
     }
 
 
